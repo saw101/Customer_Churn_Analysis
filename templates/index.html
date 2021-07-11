@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Form</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/Churn.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body,
+        div,
+        form,
+        input,
+        select,
+        textarea,
+        p {
+            padding: 3px;
+            margin: 0;
+            outline: none;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 10px;
+        }
+
+        h1 {
+            position: absolute;
+            margin: 0;
+            font-size: 32px;
+            color: #fff;
+            z-index: 2;
+        }
+
+        h5 {
+            margin: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: inherit;
+            padding: 20px;
+
+        }
+
+        form {
+            width: 100%;
+            padding: 20px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 20px 0 #050505;
+        }
+
+        .banner {
+            position: relative;
+            height: 210px;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .banner::after {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input {
+            width: calc(100% - 10px);
+            padding: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 7px 0;
+            background: transparent;
+        }
+
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+        }
+
+        .item:hover p,
+        .item:hover i,
+        .question:hover p,
+        .question label:hover,
+        input:hover::placeholder,
+        a {
+            color: #01090e;
+        }
+
+        .item input:hover,
+        .item select:hover,
+        .item textarea:hover {
+            border: 1px solid transparent;
+            box-shadow: 0 0 6px 0 #095484;
+            color: #095484;
+        }
+
+        .item {
+            position: relative;
+            margin: 10px 0;
+        }
+
+
+        .item i {
+            right: 2%;
+            top: 30px;
+            z-index: 1;
+        }
+
+
+        .question span {
+            margin-left: 30px;
+        }
+
+        span.required {
+            margin-left: 0;
+            color: red;
+        }
+
+        .btn-block {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        button {
+            width: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #095484;
+            font-size: 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0666a3;
+        }
+
+        textarea.form-control {
+            width: calc(100% - 10px);
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+
+        <form action="{{ url_for('predict')}}" method="post">
+            <div class="banner">
+                <h1>Customer Churn Prediction</h1>
+            </div>
+            <p class="helper my-2">
+            <h6>Please fill out the form fields exactly as mentioned in the guiding text.</h6>
+            </p>
+            <div class="question my-1">
+                <p>Is user a Senior Citizen?<span class="required">*</span></p>
+                <div class="form-group  purple-border">
+                    <label for="comment"></label>
+                    <textarea class="form-control" rows="1" id="query1" name="query1" rows="1" cols="5"
+                        placeholder="Please Type 1 for Yes and 0 for No" autofocus>{{query1}}</textarea>
+                </div>
+            </div>
+            <div class="question">
+                <p> What is the user Monthly Charges?<span class="required">*</span></p>
+                <div class="form-group  purple-border">
+                    <label for="comment"></label>
+                    <textarea class="form-control" rows="1" id="query2" name="query2" rows="1" cols="5"
+                        placeholder="Please Enter numeric value" autofocus>{{query2}}</textarea>
+                </div>
+            </div>
+            <div class="question">
+                <p> What is the user Total Charges?<span class="required">*</span></p>
+                <div class="form-group  purple-border">
+                    <label for="comment"></label>
+                    <textarea class="form-control" rows="1" id="query3" name="query3" rows="1" cols="5"
+                        placeholder="Please Enter numeric value" autofocus>{{query3}}</textarea>
+                </div>
+            </div>
+            <div class="question">
+                <p>What is the user Gender?<span class="required">*</span></p>
+                <div class="question">
+
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query4" name="query4" rows="1" cols="5"
+                            placeholder="Please Type Male or Female" autofocus>{{query4}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have a Partner?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query5" name="query5" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query5}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have any Dependents?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query6" name="query6" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query6}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do the user have a Phone Service?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query7" name="query7" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query7}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Do the user have Multiple Lines?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query8" name="query8" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query8}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Tell us the type of Internet Service?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query9" name="query9" rows="1" cols="5"
+                            placeholder="Please Type either DSL,Fiber optic or No" autofocus>{{query9}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have Online Security?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query10" name="query10" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query10}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have Online Backup?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query11" name="query11" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query11}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have Device Protection?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query12" name="query12" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query12}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user receive any Tech Support?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query13" name="query13" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query13}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user stream TV?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query14" name="query14" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query14}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user stream Movies?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query15" name="query15" rows="1" cols="5"
+                            placeholder="Please Type Yes or No" autofocus>{{query15}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>What is the duration of Contract?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query16" name="query16" rows="1" cols="5"
+                            placeholder="Please type either Two year,One year or Month-to-month,"
+                            autofocus>{{query16}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>Does the user have Paperless billing?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query17" name="query17" rows="1" cols="5"
+                            placeholder="Please type Yes or No" autofocus>{{query17}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>What is the type of Payment Method?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query18" name="query18" rows="1" cols="5"
+                            placeholder="Please type either Bank transfer (automatic),Credit card (automatic),Electronic check or Mailed check"
+                            autofocus>{{query18}}</textarea>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>What is the user tenure?<span class="required">*</span></p>
+                    <div class="form-group  purple-border">
+                        <label for="comment"></label>
+                        <textarea class="form-control" rows="1" id="query19" name="query19" rows="1" cols="5"
+                            placeholder="Please Enter an integer between 1 to 72" autofocus>{{query19}}</textarea>
+                    </div>
+                </div>
+                <button id="scrollBelow" type="submit" class="btn btn-primary btn-block">Predict</button>
+                <div class="row my-3">
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="2" id="comment" name="query6" rows="2" cols="5"
+                            autofocus>{{output1}}</textarea>
+                        <textarea class="form-control" rows="2" id="comment" name="query7" rows="2" cols="5"
+                            autofocus>{{output2}}</textarea>
+                    </div>
+                </div>
+        </form>
+        <script>
+            $("#scrollBelow").click(function () {
+                alert("Please scroll to bottom of the form to see the Prediction about the user.");
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    </div>
+
+</body>
+
+</html>
