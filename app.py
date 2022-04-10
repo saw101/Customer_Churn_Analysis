@@ -6,7 +6,7 @@ app = Flask("__name__")
 
 df_1 = pd.read_csv("first_telc_cleaned.csv")
 
-@app.route("/",methods=["GET","POST"])
+@app.route("/")
 def home():
     return render_template("home.html")
 
@@ -55,25 +55,7 @@ def predict():
     Paperlessbilling = request.form.get("query17")
     Paymentmethod = request.form.get("query18")
     Tenure = int(request.form.get("query19"))
-    print(Seniorcitizen,
-            Monthlycharges,
-            Totalcharges,
-            Gender,
-            Partner,
-            Dependents,
-            Phoneservice,
-            Multiplelines,
-            Internetservice,
-            Onlinesecurity,
-            Onlinebackup,
-            Deviceprotection,
-            Techsupport,
-            Streamingtv,
-            Streamingmovies,
-            Contracttype,
-            Paperlessbilling,
-            Paymentmethod,
-            Tenure)
+    
     #Gender
     if Gender=="Male":
         gender_Male = 1
