@@ -13,7 +13,7 @@ A frontend application is developed using the flask framework and deployed to He
 App URL: https://churning-customers.herokuapp.com/
 
 
-## 🔗 Links
+### Links 🔗
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/imsaw/)
 
